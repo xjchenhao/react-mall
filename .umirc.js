@@ -24,6 +24,13 @@ export default {
     services: `${src}/services`,
     components: `${src}/components`,
   },
+
+  proxy: {
+    "/api": {
+      target: "http://127.0.0.1:7001",
+      changeOrigin: true,
+    },
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
