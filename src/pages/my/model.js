@@ -6,8 +6,8 @@ import { Toast } from 'antd-mobile';
 export default {
   namespace: 'my',
   state: {
-    nickName:'',
-    avatarUrl:''
+    nickName: '',
+    avatarUrl: '',
   },
   effects: {
     *getUserInfo({ payload }, { call, put }) {
@@ -23,23 +23,23 @@ export default {
     },
     *logout({ payload }, { call, put }) {
       const response = yield call(logout, payload);
-      const { code,msg } = response;
+      const { code, msg } = response;
 
-      if(code!=='0'){
-        Toast.fail(msg,1);
+      if (code !== '0') {
+        Toast.fail(msg, 1);
 
         return;
       }
 
+      router.push('/login');
+
       yield put({
         type: 'save',
         payload: {
-          nickName:'',
-          avatarUrl:''
+          nickName: '',
+          avatarUrl: '',
         },
       });
-
-      router.push('/login')
     },
   },
   reducers: {
