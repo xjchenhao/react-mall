@@ -1,4 +1,4 @@
-import "./index.less";
+import styles from "./index.less";
 
 export default function ProductList(props) {
   function jumpToProductDetail(id) {
@@ -11,33 +11,25 @@ export default function ProductList(props) {
   // console.log(list);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       {list.map(item => (
         <div
           key={item._id}
-          className="item"
+          className={styles.item}
           onClick={() => jumpToProductDetail(item._id)}
         >
-          <div className="left">
-            <img className="img" moda="scaleToFill" src={item.banner[0]} alt="封面图" />
+          <div className={styles.left}>
+            <img className={styles.img} moda="scaleToFill" src={item.banner[0]} alt="封面图" />
           </div>
-          <div className="right">
-            <div className="title">{item.name}</div>
-            <div className="address">
-              {item.city + item.district + item.address}
-            </div>
-            <div className="info">
-              <div className="price">
-                <div className="rmb-symbol">¥</div>
-                {!!item.displayPrice && item.displayPrice.toFixed(2)}
-                <div class="original">
+          <div className={styles.right}>
+            <div className={styles.title}>{item.name}</div>
+            <div className={styles.info}>
+              <div className={styles.price}>
+                <div className={styles.rmbsymbol}>¥</div>
+                {!!item.unifiedPrice && item.unifiedPrice.toFixed(2)}
+                <div className={styles.original}>
                   {!!item.originalPrice && item.originalPrice.toFixed(2)}
                 </div>
-              </div>
-              <div className="distance">
-                {!!item.distance
-                  ? `距您${(item.distance / 1000).toFixed(1)}km`
-                  : ""}
               </div>
             </div>
           </div>
