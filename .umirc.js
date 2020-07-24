@@ -18,6 +18,7 @@ export default {
       component: '../layouts/home',
       routes: [
         { path: '/', component: '../pages/home' },
+        { path: '/my', component: '../pages/my' },
       ]
     }
   ],

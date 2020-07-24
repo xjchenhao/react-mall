@@ -1,5 +1,7 @@
 import axios from "axios";
 import { Toast } from "antd-mobile";
+import router from 'umi/router';
+
 
 // const URL = require("url");
 
@@ -26,7 +28,6 @@ const request = options => {
   } else {
     options.url = options.url.replace("?", "?clientType=h5&");
   }
-  //console.log(options.url);
 
   return axios(options)
     .then(res => {
@@ -34,7 +35,11 @@ const request = options => {
       const code = Number(data.code);
 
       if (code === 403) {
-        Toast.info('请先登录')
+        Toast.info('请先登录',1,()=>{
+          router.push('/login')
+        })
+
+        return;
       }
 
       return data;

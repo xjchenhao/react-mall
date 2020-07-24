@@ -1,0 +1,16 @@
+.avatarUrl{
+  width:.5rem;
+  height:.5rem;
+  margin-right:.2rem;
+}
+.info{
+  display: flex;
+  align-items: center;
+  padding:.3rem .5rem
+}
+.nickName{
+  font-size: .32rem;
+}
+.menuList{
+  padding-bottom:.5rem;
+}

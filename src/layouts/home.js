@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import styles from './index.css';
 import { TabBar } from 'antd-mobile';
 import { HomeFilled,HomeOutlined } from '@ant-design/icons';
@@ -7,6 +7,16 @@ import router from 'umi/router';
 function BasicLayout(props) {
 
   const [selectedTab,setSelectedTab]=useState('home');
+  const selectedTabMap={
+    "/my":'my',
+    "/":'home'
+  }
+
+  useEffect(()=>{
+
+    setSelectedTab(selectedTabMap[props.location.pathname])
+
+  },[props.location, selectedTabMap])
 
   return (
     <div className={styles.normal}>
@@ -23,7 +33,6 @@ function BasicLayout(props) {
             selectedIcon={<HomeFilled />}
             selected={selectedTab === 'home'}
             onPress={() => {
-              setSelectedTab('home')
               router.push('/');
             }}
           >
@@ -47,8 +56,7 @@ function BasicLayout(props) {
             key="my"
             selected={selectedTab === 'my'}
             onPress={() => {
-              setSelectedTab('my')
-              router.push('/');
+              router.push('/my');
             }}
           >
           </TabBar.Item>
