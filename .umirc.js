@@ -7,11 +7,17 @@ export default {
   treeShaking: true,
   routes: [
     {
-      path: '/',
+      path: '/login',
       component: '../layouts/index',
       routes: [
-        { path: '/', component: '../pages/home' },
         { path: '/login', component: '../pages/login' }
+      ]
+    },
+    {
+      path: '/',
+      component: '../layouts/home',
+      routes: [
+        { path: '/', component: '../pages/home' },
       ]
     }
   ],
