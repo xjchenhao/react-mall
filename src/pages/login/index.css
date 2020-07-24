@@ -1,0 +1,22 @@
+.content{
+  /* padding:0 .25rem; */
+}
+
+.logo{
+  margin: .5rem 0;
+  font-size: .64rem;
+  color:#1890ff
+}
+.operation{
+  margin:.5rem .25rem 0;
+}
+.submitBtn{
+  border-radius: .5rem;
+}
+.submitTips{
+  color:#999
+}
+.submitTipsLink{
+  margin-top: .25rem;
+  color:#1890ff
+}
