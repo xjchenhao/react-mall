@@ -9,19 +9,19 @@ import styles from './index.css';
 
 const Login = props => {
   const { getFieldProps, validateFields } = props.form;
+  const [userName,setUserName]=useState('');
+  const [password,setPassword]=useState('');
 
   const [btnActiveState, setBtnActiveState] = useState(false);
 
   useEffect(()=>{
-    const userNameValue=getFieldProps('userName').value;
-    const passwordValue=getFieldProps('password').value;
 
-    if(userNameValue&&passwordValue){
+    if(userName&&password){
       setBtnActiveState(true)
     }else{
       setBtnActiveState(false)
     }
-  })
+  }, [ password, userName])
 
   const handleLoginSubmit = () => {
     const { dispatch } = props;
@@ -69,7 +69,9 @@ const Login = props => {
       <div className={styles.logo}>GDB Mall</div>
       <List>
         <InputItem
-          {...getFieldProps('userName')}
+          {...getFieldProps('userName',{
+            onChange:setUserName
+          })}
           clear
           key="userName"
           placeholder="test"
@@ -78,12 +80,13 @@ const Login = props => {
           账号
         </InputItem>
         <InputItem
-          {...getFieldProps('password')}
+          {...getFieldProps('password',{
+            onChange:setPassword
+          })}
           clear
           key="password"
           type="password"
-          placeholder="testpwd"
-          // ref={el => this.inputRef = el}
+          placeholder="123456"
         >
           密码
         </InputItem>
