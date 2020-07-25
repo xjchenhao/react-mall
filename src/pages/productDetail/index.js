@@ -21,6 +21,10 @@ class ProductDetail extends PureComponent {
     });
   }
 
+  // handleBuy(){
+
+  // }
+
   handleBack() {
     router.goBack();
   }
@@ -65,6 +69,10 @@ class ProductDetail extends PureComponent {
           </Flex>
         </div>
         <div className={styles.introduce} dangerouslySetInnerHTML={{__html:product.content}}></div>
+        <div className={styles.operation}>
+            <div className={styles.shoppingCartBtn}>加入购物车</div>
+            <div className={styles.buyBtn}>立即购买</div>
+        </div>
       </div>
     );
   }
