@@ -1,17 +1,35 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { NavBar, Icon, Carousel, Flex, WhiteSpace,Modal } from 'antd-mobile';
+import { NavBar, Icon, Carousel, Flex, WhiteSpace, Modal } from 'antd-mobile';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import styles from './index.less';
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 
+let connection;
 @connect(({ productDetail }) => ({
   productDetail,
 }))
 class ProductDetail extends PureComponent {
+  state = {
+    price: undefined,
+  };
   componentDidMount() {
     const { dispatch } = this.props;
     const { id: productId } = this.props.location.query;
+
+    connection = new HubConnectionBuilder()
+      .withUrl('/api/signalr')
+      .configureLogging(LogLevel.Information)
+      .build();
+
+    connection.on('updateProductPrice', value => {
+      this.setState({
+        price: value,
+      });
+    });
+
+    connection.start();
 
     dispatch({
       type: 'productDetail/getDetail',
@@ -21,7 +39,13 @@ class ProductDetail extends PureComponent {
     });
   }
 
-  handleBuy(){
+  componentWillUnmount() {
+    connection.off();
+    connection.stop();
+    connection.completeClose()
+  }
+
+  handleBuy() {
     const { dispatch } = this.props;
     const { id: productId } = this.props.location.query;
 
@@ -29,16 +53,16 @@ class ProductDetail extends PureComponent {
       { text: '取消', onPress: () => console.log('cancel') },
       {
         text: '确认',
-        onPress: () =>{
+        onPress: () => {
           dispatch({
             type: 'productDetail/buy',
             payload: {
               productId: productId,
             },
           });
-        }
+        },
       },
-    ])
+    ]);
   }
 
   handleBack() {
@@ -48,6 +72,8 @@ class ProductDetail extends PureComponent {
   render() {
     const product = this.props.productDetail.detail;
     const bannerList = product.banner || [];
+
+    const price = this.state.price ? this.state.price : (!!product.unifiedPrice&&product.unifiedPrice.toFixed(2));
 
     return (
       <div className={styles.countent}>
@@ -73,7 +99,7 @@ class ProductDetail extends PureComponent {
             <Flex.Item>
               <div className={styles.price}>
                 <div className={styles.rmbsymbol}>¥</div>
-                {!!product.unifiedPrice && product.unifiedPrice.toFixed(2)}
+                {price}
                 <div className={styles.original}>
                   {!!product.originalPrice && product.originalPrice.toFixed(2)}
                 </div>
@@ -84,10 +110,20 @@ class ProductDetail extends PureComponent {
             </Flex.Item>
           </Flex>
         </div>
-        <div className={styles.introduce} dangerouslySetInnerHTML={{__html:product.content}}></div>
+        <div
+          className={styles.introduce}
+          dangerouslySetInnerHTML={{ __html: product.content }}
+        ></div>
         <div className={styles.operation}>
-            <div className={styles.shoppingCartBtn}>加入购物车</div>
-            <div className={styles.buyBtn} onClick={()=>{this.handleBuy()}}>立即购买</div>
+          <div className={styles.shoppingCartBtn}>加入购物车</div>
+          <div
+            className={styles.buyBtn}
+            onClick={() => {
+              this.handleBuy();
+            }}
+          >
+            立即购买
+          </div>
         </div>
       </div>
     );

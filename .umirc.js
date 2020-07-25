@@ -52,7 +52,7 @@ export default {
       antd: true,
       dva: true,
       dynamicImport: false,
-      title: 'h5',
+      title: 'GBD Mall',
       dll: false,
 
       routes: {
