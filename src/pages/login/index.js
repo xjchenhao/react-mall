@@ -36,7 +36,7 @@ const Login = props => {
         });
       } else {
         let errTip = [];
-        for (let [key, value] of Object.entries(err)) {
+        for (let [value] of Object.entries(err)) {
           const { errors } = value || {};
           if (errors) {
             const { message } = (errors && errors[0]) || {};

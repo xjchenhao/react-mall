@@ -16,7 +16,7 @@ class ProductDetail extends PureComponent {
     dispatch({
       type: 'productDetail/getDetail',
       payload: {
-        id: productId,
+        id:productId
       },
     });
   }
