@@ -17,7 +17,8 @@ export default {
       path: '/product',
       component: '../layouts/index',
       routes: [
-        { path: '/product/detail', component: '../pages/productDetail' }
+        { path: '/product/detail', component: '../pages/productDetail' },
+        { path: '/product/order', component: '../pages/order' }
       ]
     },
     {

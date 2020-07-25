@@ -14,7 +14,6 @@ function BasicLayout(props) {
   useEffect(() => {
     setSelectedTab(selectedTabMap[props.location.pathname]);
   }, [props.location, selectedTabMap]);
-    console.log(props.children)
 
   return (
 

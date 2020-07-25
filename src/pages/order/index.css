@@ -1,0 +1,20 @@
+
+.normal {
+  font-family: Georgia, sans-serif;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.listBody{
+margin-top: .25rem;
+}
+.list {
+  font-size: 1.2rem;
+  margin: 1.8rem 0 0;
+  list-style: none;
+  line-height: 1.5rem;
+}
+
+.list code {
+  background: #f7f7f7;
+}

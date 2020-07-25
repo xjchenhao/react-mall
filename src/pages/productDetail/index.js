@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { NavBar, Icon, Carousel, Flex, WhiteSpace,Modal,Toast } from 'antd-mobile';
+import { NavBar, Icon, Carousel, Flex, WhiteSpace,Modal } from 'antd-mobile';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
@@ -33,7 +33,7 @@ class ProductDetail extends PureComponent {
           dispatch({
             type: 'productDetail/buy',
             payload: {
-              id: productId,
+              productId: productId,
             },
           });
         }

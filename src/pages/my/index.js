@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import router from 'umi/router';
 import { List } from 'antd-mobile';
 
 import styles from './index.css';
@@ -41,7 +42,7 @@ class My extends PureComponent {
           </div>
         </div>
         <List className={styles.menuList}>
-          <Item arrow="horizontal">历史订购</Item>
+          <Item arrow="horizontal" onClick={()=>{router.push('/product/order')}}>订购历史</Item>
           <Item arrow="horizontal" onClick={()=>{this.handleLogout()}}>登出</Item>
         </List>
       </div>
