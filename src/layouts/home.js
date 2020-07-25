@@ -14,10 +14,12 @@ function BasicLayout(props) {
   useEffect(() => {
     setSelectedTab(selectedTabMap[props.location.pathname]);
   }, [props.location, selectedTabMap]);
+    console.log(props.children)
 
   return (
+
     <div className={styles.normal}>
-      <TabBar unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
+      <TabBar prerenderingSiblingsNumber={0} unselectedTintColor="#949494" tintColor="#33A3F4" barTintColor="white">
         <TabBar.Item
           title="主页"
           key="home"
@@ -28,7 +30,7 @@ function BasicLayout(props) {
             router.push('/');
           }}
         >
-          {props.children}
+        {props.children}
         </TabBar.Item>
         <TabBar.Item
           icon={
@@ -58,7 +60,7 @@ function BasicLayout(props) {
             router.push('/my');
           }}
         >
-          {props.children}
+        {props.children}
         </TabBar.Item>
       </TabBar>
     </div>

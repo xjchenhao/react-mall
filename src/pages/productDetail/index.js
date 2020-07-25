@@ -5,8 +5,8 @@ import { NavBar, Icon, Carousel, Flex, WhiteSpace } from 'antd-mobile';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
-@connect(({ product }) => ({
-  product,
+@connect(({ productDetail }) => ({
+  productDetail,
 }))
 class ProductDetail extends PureComponent {
   componentDidMount() {
@@ -14,7 +14,7 @@ class ProductDetail extends PureComponent {
     const { id: productId } = this.props.location.query;
 
     dispatch({
-      type: 'product/getDetail',
+      type: 'productDetail/getDetail',
       payload: {
         id: productId,
       },
@@ -30,7 +30,7 @@ class ProductDetail extends PureComponent {
   }
 
   render() {
-    const product = this.props.product.detail;
+    const product = this.props.productDetail.detail;
     const bannerList = product.banner || [];
 
     return (

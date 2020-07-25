@@ -5,18 +5,16 @@ import { connect } from "dva";
 
 import styles from './index.css';
 
-
-@connect(({ product }) => ({
-  product,
+@connect(({ productList }) => ({
+  productList,
 }))
 class Home extends PureComponent {
-  componentDidMount() {
-    const { dispatch,product:{list} } = this.props;
+  componentWillMount() {
+    const { dispatch,productList:{list} } = this.props;
 
     if(!list.length){
-
       dispatch({
-        type: 'product/getList',
+        type: 'productList/getList',
         payload: {
           currentPage:1,
           pageSize:20,
@@ -26,11 +24,11 @@ class Home extends PureComponent {
   }
 
   render() {
-    const { product } = this.props;
+    const { productList } = this.props;
 
     const productListProps={
-      list:product.list,
-      currentPage:product.currentPage,
+      list:productList.list,
+      currentPage:productList.currentPage,
     }
 
     return (

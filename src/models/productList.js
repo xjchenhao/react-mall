@@ -1,9 +1,8 @@
-import { getList,getDetail } from '@/services/product';
+import { getList } from '@/services/product';
 
 export default {
-  namespace: 'product',
+  namespace: 'productList',
   state: {
-    detail:{},
     list: [],
     pageSize: 20,
     currentPage: 1,
@@ -13,7 +12,7 @@ export default {
   effects: {
     *getList({ payload }, { call, put,select }) {
       const response = yield call(getList, payload);
-      const list = yield select(state => state.product.list);
+      const list = yield select(state => state.productList.list);
       const { data } = response;
 
       yield put({
@@ -24,19 +23,6 @@ export default {
         },
       });
     },
-    *getDetail({ payload }, { call, put }){
-      const response = yield call(getDetail, payload);
-      const { data } = response;
-
-      yield put({
-        type: 'save',
-        payload: {
-          detail:{
-            ...data,
-          },
-        },
-      });
-    }
   },
   reducers: {
     save(state, { payload }) {
