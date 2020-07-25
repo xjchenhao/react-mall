@@ -20,7 +20,6 @@ function BasicLayout(props) {
 
   return (
     <div className={styles.normal}>
-      {props.children}
       <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
@@ -36,6 +35,8 @@ function BasicLayout(props) {
               router.push('/');
             }}
           >
+      {props.children}
+
           </TabBar.Item>
           <TabBar.Item
             icon={
@@ -59,6 +60,8 @@ function BasicLayout(props) {
               router.push('/my');
             }}
           >
+      {props.children}
+
           </TabBar.Item>
         </TabBar>
     </div>
