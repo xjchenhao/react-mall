@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { NavBar, Icon, Carousel, Flex, WhiteSpace,Modal } from 'antd-mobile';
+import { NavBar, Icon, Carousel, Flex, WhiteSpace, Modal } from 'antd-mobile';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
@@ -16,12 +16,12 @@ class ProductDetail extends PureComponent {
     dispatch({
       type: 'productDetail/getDetail',
       payload: {
-        id:productId
+        id: productId,
       },
     });
   }
 
-  handleBuy(){
+  handleBuy() {
     const { dispatch } = this.props;
     const { id: productId } = this.props.location.query;
 
@@ -29,16 +29,16 @@ class ProductDetail extends PureComponent {
       { text: '取消', onPress: () => console.log('cancel') },
       {
         text: '确认',
-        onPress: () =>{
+        onPress: () => {
           dispatch({
             type: 'productDetail/buy',
             payload: {
               productId: productId,
             },
           });
-        }
+        },
       },
-    ])
+    ]);
   }
 
   handleBack() {
@@ -63,7 +63,13 @@ class ProductDetail extends PureComponent {
         </NavBar>
         <Carousel autoplay={false} infinite>
           {bannerList.map(item => (
-            <img src={item} key={item} alt="产品轮播图" loading="lazy" className={styles.bannerImg} />
+            <img
+              src={item}
+              key={item}
+              alt="产品轮播图"
+              loading="lazy"
+              className={styles.bannerImg}
+            />
           ))}
         </Carousel>
         <div className={styles.info}>
@@ -84,10 +90,20 @@ class ProductDetail extends PureComponent {
             </Flex.Item>
           </Flex>
         </div>
-        <div className={styles.introduce} dangerouslySetInnerHTML={{__html:product.content}}></div>
+        <div
+          className={styles.introduce}
+          dangerouslySetInnerHTML={{ __html: product.content }}
+        ></div>
         <div className={styles.operation}>
-            <div className={styles.shoppingCartBtn}>加入购物车</div>
-            <div className={styles.buyBtn} onClick={()=>{this.handleBuy()}}>立即购买</div>
+          <div className={styles.shoppingCartBtn}>加入购物车</div>
+          <div
+            className={styles.buyBtn}
+            onClick={() => {
+              this.handleBuy();
+            }}
+          >
+            立即购买
+          </div>
         </div>
       </div>
     );
