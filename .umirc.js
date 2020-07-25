@@ -10,7 +10,14 @@ export default {
       path: '/login',
       component: '../layouts/index',
       routes: [
-        { path: '/login', component: '../pages/login' }
+        { path: '/login', component: '../pages/login' },
+      ]
+    },
+    {
+      path: '/product',
+      component: '../layouts/index',
+      routes: [
+        { path: '/product/detail', component: '../pages/productDetail' }
       ]
     },
     {

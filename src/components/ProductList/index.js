@@ -1,14 +1,12 @@
+import router from 'umi/router';
 import styles from "./index.less";
 
 export default function ProductList(props) {
   function jumpToProductDetail(id) {
-    // Taro.navigateTo({
-    //   url: `/pages/aPages/productDetail/index?id=${id}`
-    // });
+    router.push(`/product/detail?id=${id}`);
   }
 
   const { list = [] } = props;
-  // console.log(list);
 
   return (
     <div className={styles.container}>

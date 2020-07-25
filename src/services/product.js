@@ -12,8 +12,7 @@ export function getList(params) {
 // 产品详情
 export function getDetail(params) {
   return request({
-    url: '/api/detail',
-    type: 'get',
-    data: params,
+    url: `/api/product/detail?${stringify(params)}`,
+    type: "get"
   });
 }
