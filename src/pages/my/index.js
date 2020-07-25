@@ -36,7 +36,7 @@ class My extends PureComponent {
     return (
       <div className={styles.content}>
         <div className={styles.info}>
-            <img className={styles.avatarUrl} src={avatarUrl} alt="头像" />
+            <img className={styles.avatarUrl} loading="lazy" src={avatarUrl} alt="头像" />
           <div className={styles.nickName}>
             <div>{nickName}</div>
           </div>

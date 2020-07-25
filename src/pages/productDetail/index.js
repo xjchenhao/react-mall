@@ -63,7 +63,7 @@ class ProductDetail extends PureComponent {
         </NavBar>
         <Carousel autoplay={false} infinite>
           {bannerList.map(item => (
-            <img src={item} key={item} alt="产品轮播图" className={styles.bannerImg} />
+            <img src={item} key={item} alt="产品轮播图" loading="lazy" className={styles.bannerImg} />
           ))}
         </Carousel>
         <div className={styles.info}>

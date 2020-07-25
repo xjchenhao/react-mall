@@ -20,7 +20,7 @@ export default function ProductList(props) {
         onClick={() => jumpToProductDetail(item._id)}
       >
         <div className={styles.left}>
-          <img className={styles.img} moda="scaleToFill" src={item.banner[0]} alt="封面图" />
+          <img className={styles.img} moda="scaleToFill" loading="lazy" src={item.banner[0]} alt="封面图" />
         </div>
         <div className={styles.right}>
           <div className={styles.title}>{item.name}</div>
