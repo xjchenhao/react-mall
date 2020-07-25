@@ -24,16 +24,13 @@ export default {
     },
     *buy({ payload }, { call, put }){
       const response = yield call(createOrder, payload);
-      const { data } = response;
+      const { code,msg } = response;
 
-      yield put({
-        type: 'save',
-        payload: {
-          detail:{
-            ...data,
-          },
-        },
-      });
+      if(code!=='0'){
+        Toast.fail(msg,1);
+
+        return;
+      }
 
       Toast.success('支付成功，即将返回首页',3,()=>{
         router.push('/');
