@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
 import { connect } from 'dva';
-import { NavBar, Icon, Carousel, Flex, WhiteSpace } from 'antd-mobile';
+import { NavBar, Icon, Carousel, Flex, WhiteSpace,Modal,Toast } from 'antd-mobile';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 import styles from './index.less';
 
@@ -21,9 +21,25 @@ class ProductDetail extends PureComponent {
     });
   }
 
-  // handleBuy(){
+  handleBuy(){
+    const { dispatch } = this.props;
+    const { id: productId } = this.props.location.query;
 
-  // }
+    Modal.alert('确认购买', '将直接创建订单', [
+      { text: '取消', onPress: () => console.log('cancel') },
+      {
+        text: '确认',
+        onPress: () =>{
+          dispatch({
+            type: 'productDetail/buy',
+            payload: {
+              id: productId,
+            },
+          });
+        }
+      },
+    ])
+  }
 
   handleBack() {
     router.goBack();
@@ -71,7 +87,7 @@ class ProductDetail extends PureComponent {
         <div className={styles.introduce} dangerouslySetInnerHTML={{__html:product.content}}></div>
         <div className={styles.operation}>
             <div className={styles.shoppingCartBtn}>加入购物车</div>
-            <div className={styles.buyBtn}>立即购买</div>
+            <div className={styles.buyBtn} onClick={()=>{this.handleBuy()}}>立即购买</div>
         </div>
       </div>
     );
