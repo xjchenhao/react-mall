@@ -43,32 +43,37 @@
   padding: 0.3rem 0.25rem;
   text-align: left;
   min-height: 3.5rem;
-  font-size:.24rem;
-  line-height:1.7;
-  color:#555;
+  font-size: 0.24rem;
+  line-height: 1.7;
+  color: #555;
 }
-.operation{
+.operation {
   position: fixed;
   bottom: 0;
-  left:0;
-  width:100%;
-  padding:.1rem .25rem;
-  box-sizing:border-box;
-  border-top:1px solid #eee;
+  left: 0;
+  width: 100%;
+  padding: 0.1rem 0.25rem;
+  box-sizing: border-box;
+  border-top: 1px solid #eee;
   background-color: #fff;
   display: flex;
 
-  .shoppingCartBtn,.buyBtn{
-    border-radius: .5rem;
-    color:#fff;
-    padding:.15rem .5rem;
-    flex:1;
+  .shoppingCartBtn,
+  .buyBtn,
+  .buyBtnDisable {
+    border-radius: 0.5rem;
+    color: #fff;
+    padding: 0.15rem 0.5rem;
+    flex: 1;
   }
-  .shoppingCartBtn{
+  .shoppingCartBtn {
     background-color: red;
-    margin-right:.3rem;
+    margin-right: 0.3rem;
   }
-  .buyBtn{
+  .buyBtn {
     background-color: #ffac00;
+  }
+  .buyBtnDisable {
+    background-color: #9a9a9a;
   }
 }

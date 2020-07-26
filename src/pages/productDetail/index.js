@@ -49,6 +49,30 @@ class ProductDetail extends PureComponent {
     const product = this.props.productDetail.detail;
     const bannerList = product.banner || [];
 
+    const Operation = () => {
+      if (product.quantity >= 1) {
+        return (
+          <div className={styles.operation}>
+            <div className={styles.shoppingCartBtn}>加入购物车</div>
+            <div
+              className={styles.buyBtn}
+              onClick={() => {
+                this.handleBuy();
+              }}
+            >
+              立即购买
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <div className={styles.operation}>
+          <div className={styles.buyBtnDisable}>已售罄</div>;
+        </div>
+      );
+    };
+
     return (
       <div className={styles.countent}>
         <NavBar
@@ -94,17 +118,7 @@ class ProductDetail extends PureComponent {
           className={styles.introduce}
           dangerouslySetInnerHTML={{ __html: product.content }}
         ></div>
-        <div className={styles.operation}>
-          <div className={styles.shoppingCartBtn}>加入购物车</div>
-          <div
-            className={styles.buyBtn}
-            onClick={() => {
-              this.handleBuy();
-            }}
-          >
-            立即购买
-          </div>
-        </div>
+        <Operation />
       </div>
     );
   }
