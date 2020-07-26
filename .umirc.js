@@ -67,5 +67,5 @@ export default {
       },
     ],
   ],
-  extraPostCSSPlugins: [pxtorem({ rootValue: 100, propWhiteList: [] })],
+  extraPostCSSPlugins: [pxtorem({ rootValue: 50, propWhiteList: [] })],
 };
