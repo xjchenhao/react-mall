@@ -22,6 +22,14 @@ export default {
         },
       });
     },
+    *cleanDetail({ payload }, { put }) {
+      yield put({
+        type: 'save',
+        payload: {
+          detail: {},
+        },
+      });
+    },
     *buy({ payload }, { call, put }) {
       const response = yield call(createOrder, payload);
       const { code, msg } = response;

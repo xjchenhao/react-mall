@@ -21,6 +21,17 @@ class ProductDetail extends PureComponent {
     });
   }
 
+  componentWillUnmount() {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'productDetail/cleanDetail',
+      payload: {
+        data: {},
+      },
+    });
+  }
+
   handleBuy() {
     const { dispatch } = this.props;
     const { id: productId } = this.props.location.query;
