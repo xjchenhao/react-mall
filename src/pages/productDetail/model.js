@@ -6,36 +6,36 @@ import { Toast } from 'antd-mobile';
 export default {
   namespace: 'productDetail',
   state: {
-    detail:{},
+    detail: {},
   },
   effects: {
-    *getDetail({ payload }, { call, put }){
+    *getDetail({ payload }, { call, put }) {
       const response = yield call(getDetail, payload);
       const { data } = response;
 
       yield put({
         type: 'save',
         payload: {
-          detail:{
+          detail: {
             ...data,
           },
         },
       });
     },
-    *buy({ payload }, { call, put }){
+    *buy({ payload }, { call, put }) {
       const response = yield call(createOrder, payload);
-      const { code,msg } = response;
+      const { code, msg } = response;
 
-      if(code!=='0'){
-        Toast.fail(msg,1);
+      if (code !== '0') {
+        Toast.fail(msg, 1);
 
         return;
       }
 
-      Toast.success('支付成功，即将返回首页',3,()=>{
+      Toast.success('支付成功，即将返回首页', 3, () => {
         router.push('/');
       });
-    }
+    },
   },
   reducers: {
     save(state, { payload }) {
