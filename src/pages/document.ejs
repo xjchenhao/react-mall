@@ -16,12 +16,18 @@
     <%= context.title %>
   </title>
   <script>
-    (function () {
+
+    const updateBasisFontSizeFun = function () {
+
       var documentElement = window.document.documentElement;
       var baseFontSize = 100 * (documentElement.clientWidth / 375) / 2;
 
       documentElement.style.fontSize = baseFontSize + 'px';
-    })();
+    }
+
+    updateBasisFontSizeFun();
+
+    window.onresize = updateBasisFontSizeFun;
   </script>
 </head>
 
